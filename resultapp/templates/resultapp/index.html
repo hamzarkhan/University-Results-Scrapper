@@ -45,10 +45,6 @@
             border: 1px solid #4285f4;  /* Match border color with header background */
         }
 
-        tr.no-backlog {
-            background-color: green; /* Green background for rows with "no backlogs" */
-        }
-
         tr:nth-child(even) {
             background-color: #f9f9f9;  /* Alternate background color for even rows */
         }
@@ -103,7 +99,7 @@
             </thead>
             <tbody>
                 {% for result in results %}
-                    <tr {% if "no backlogs" in result.backlogs|lower %} class="no-backlog" {% endif %}>
+                    <tr>
                         <td>{{ result.college_code }}</td>
                         <td>{{ result.field_code }}</td>
                         <td>{{ result.hall_ticket }}</td>
