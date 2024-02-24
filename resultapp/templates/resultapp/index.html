@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Display</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #4285f4;
+        }
+
+        form {
+            margin: 0 auto; /* Center the form horizontally */
+            width: 50%; /* Adjust width as needed */
+            max-width: 600px; /* Set maximum width for larger screens */
+            padding: 20px; /* Add some padding for better visual appeal */
+            background-color: #fff; /* Add a white background */
+            border-radius: 8px; /* Add rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;  /* Center the table and add some margin */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  /* Add a subtle box shadow */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;  /* Add border to cells */
+        }
+
+        th {
+            background-color: #4285f4;
+            color: white;
+            border: 1px solid #4285f4;  /* Match border color with header background */
+        }
+
+        tr.no-backlog {
+            background-color: green; /* Green background for rows with "no backlogs" */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;  /* Alternate background color for even rows */
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        button {
+            background-color: #4285f4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #357ae8;
+        }
+
+        form input,
+        form select,
+        form textarea,
+        form button {
+            width: 100%; /* Make elements fill the width of the form */
+            margin-bottom: 10px; /* Add space between elements */
+            padding: 8px; /* Add padding for better visual appeal */
+            box-sizing: border-box; /* Ensure padding and border don't affect element width */
+        }
+    </style>
+</head>
+<body>
+    <h1>OSMANIA UNIVERSITY RESULTS</h1>
+
+    <form method="post" action="{% url 'index' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if results %}
+        <table>
+            <thead>
+                <tr>
+                    <th>College Code</th>
+                    <th>Field Code</th>
+                    <th>Hall Ticket</th>
+                    <th>Marks</th>
+                    <th>Name</th>
+                    <th>Backlogs</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                    <tr {% if "no backlogs" in result.backlogs|lower %} class="no-backlog" {% endif %}>
+                        <td>{{ result.college_code }}</td>
+                        <td>{{ result.field_code }}</td>
+                        <td>{{ result.hall_ticket }}</td>
+                        <td>{{ result.marks }}</td>
+                        <td>{{ result.name }}</td>
+                        <td>{{ result.backlogs }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
