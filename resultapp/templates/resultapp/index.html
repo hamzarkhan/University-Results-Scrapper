@@ -3,17 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result Display</title>
+    <title>OSMANIA UNIVERSITY RESULTS</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
             color: #333;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
         }
 
-        h1 {
-            color: #4285f4;
+        .navbar {
+            background-color: #4285f4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Center the content vertically */
+        }
+
+        .navbar h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 24px;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+            margin-bottom: 10px; /* Add some space between links */
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
         }
 
         form {
@@ -74,17 +126,40 @@
             padding: 8px; /* Add padding for better visual appeal */
             box-sizing: border-box; /* Ensure padding and border don't affect element width */
         }
+        .navbar .sidebar-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            margin-right: 10px;
+        }
     </style>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <h1>OSMANIA UNIVERSITY RESULTS</h1>
+    <!-- Collapsible sidebar -->
+    <div class="sidebar" id="mySidebar" style="color: yellow;">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <p style="margin-bottom: 20px; margin-left: 20px; ">Created By: <br> Mohammed Abdul Rahman</p>
+        <p style="margin-bottom: 20px; margin-left: 20px;">Connect with me: <a  href="https://www.linkedin.com/in/mohammed-abdul-rahman-710a74250/" style="font-size: small;" target="_blank"
+            >linkedin</a></p>
+        <p style="margin-left: 20px;">Project: <br> University Results Scrapper</p>
+    </div>
 
-    <form method="post" action="{% url 'index' %}">
+    <!-- Navbar -->
+    <div class="navbar">
+        <i class="fas fa-bars sidebar-icon" onclick="openNav()"></i>
+        <h1>OSMANIA UNIVERSITY RESULTS</h1>
+        <!-- Add a button to open the sidebar -->
+    </div>
+
+    <!-- Form for submitting results -->
+    <form id="resultForm" method="post" action="{% url 'index' %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
+        <button type="submit" onclick="clearForm()">Submit</button>
     </form>
 
+    <!-- Display results if available -->
     {% if results %}
         <table>
             <thead>
@@ -111,5 +186,23 @@
             </tbody>
         </table>
     {% endif %}
+
+    <!-- JavaScript to control sidebar and form clearing -->
+    <script>
+        // Function to open the sidebar
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        // Function to close the sidebar
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+
+        // Function to clear form fields
+        function clearForm() {
+            document.getElementById("resultForm").reset();
+        }
+    </script>
 </body>
 </html>
