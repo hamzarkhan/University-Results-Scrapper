@@ -6,7 +6,8 @@
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-
+- [Contributing](#contributing)
+ 
 ## Introduction
 
 UNIVERSITYRESULTS is a Django web application designed to simplify the process of retrieving and viewing results from Osmania University. With this application, users can easily submit their details and obtain their results in a user-friendly tabular format.
@@ -56,3 +57,8 @@ UNIVERSITYRESULTS is a Django web application designed to simplify the process o
 4. View your results displayed in a tabular format.
 5. To clear the form, click the "Clear" button.
 o for web framework: [Django](https://www.djangoproject.com/)
+
+## Contributing
+
+We welcome contributions from the community! If you have ideas for improvements, bug fixes, or new features, feel free to submit a pull request.
+
