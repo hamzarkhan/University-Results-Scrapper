@@ -1,4 +1,3 @@
-# resultapp/views.py
 from django.shortcuts import render
 from .forms import ResultForm
 from django.utils.safestring import mark_safe
@@ -21,6 +20,10 @@ def scrape_results(result_link, college_code, field_code, year):
 
     for field_code in field_codes:
         for college_code in college_codes:
+            if not is_valid_combination(college_code, field_code):
+                results.append({'error': 'College code and course not matched'})
+                continue
+            
             for index in range(1, 121):
                 hall_ticket = college_code + year + field_code + str(index).zfill(3)
                 result = find_result(globalbr, pre_link, field_code, college_code, hall_ticket, int(str(index).zfill(3)))
@@ -88,6 +91,19 @@ def extract_subjects_with_f_grade(soup):
         if grade == 'F':
             f_grade_subjects.append(f"{sub_code} - {sub_name}")
     return f_grade_subjects
+
+def is_valid_combination(college_code, field_code):
+    # Define a dictionary mapping college codes to the available field codes
+    college_field_mapping = {
+        '1604': ['748','735','734','737', '750', '736', '733', '732'],  # MJCET
+        '1605': ['736', '733', '732'],          # ISL
+        '1610': ['748', '749', '750', '736', '733', '732'],  # NSAKCET
+        '2455': ['748', '733',],          # KMEC
+        '2453': ['748','733']   # NGIT
+    }
+
+    # Check if the selected field code is available for the chosen college code
+    return field_code in college_field_mapping.get(college_code, [])
 
 def index(request):
     results = []
