@@ -96,6 +96,7 @@ def is_valid_combination(college_code, field_code):
     # Define a dictionary mapping college codes to the available field codes
     college_field_mapping = {
         '1604': ['748','735','734','737', '750', '736', '733', '732'],  # MJCET
+        '1603':['735','736','737','732','734','733'], # DECCAN
         '1605': ['736', '733', '732'],          # ISL
         '1610': ['748', '749', '750', '736', '733', '732'],  # NSAKCET
         '2455': ['748', '733',],          # KMEC
