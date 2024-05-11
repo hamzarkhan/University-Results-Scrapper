@@ -47,7 +47,7 @@ def find_result(globalbr, pre_link, field_code, college_code, hall_ticket, index
     soup = BeautifulSoup(raw.content, "html.parser")
 
     # Find the Name
-    table = soup.find(id="AutoNumber3")
+    table = soup.find('table',id="AutoNumber3")
     if table is None:
         return None
     last_row = table("tr")[2]
@@ -58,9 +58,9 @@ def find_result(globalbr, pre_link, field_code, college_code, hall_ticket, index
     table = soup.find(id="AutoNumber5")
     if table is None:
         return None
-    last_row = table("tr")[-1]
-    td_list = last_row.find_all("td")
-    marks = td_list[2].text
+    rows = table.find_all("tr")[-1]
+    mark_row=rows.find_all('td')[1]
+    marks =mark_row.get_text(strip=True)
 
     # Find subjects with 'F' grade
     f_grade_subjects = extract_subjects_with_f_grade(soup)
@@ -87,7 +87,7 @@ def extract_subjects_with_f_grade(soup):
         columns = row.find_all("td")
         sub_code = columns[0].text.strip()
         sub_name = columns[1].text.strip()
-        grade = columns[3].text.strip()
+        grade = columns[4].text.strip()
         if grade == 'F':
             f_grade_subjects.append(f"{sub_code} - {sub_name}")
     return f_grade_subjects
