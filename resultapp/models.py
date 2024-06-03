@@ -5,8 +5,6 @@ from django.db import models
 from django.db import models
 
 class StudentResult(models.Model):
-    college_code = models.CharField(max_length=10)
-    field_code = models.CharField(max_length=10)
     hall_ticket = models.CharField(max_length=10)
     marks = models.CharField(max_length=10)
     name = models.CharField(max_length=255)

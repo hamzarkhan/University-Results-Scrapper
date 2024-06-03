@@ -6,6 +6,27 @@ import mechanize
 import requests
 from requests.adapters import HTTPAdapter
 
+FIELD_CHOICES = {
+        '748':'AIML',
+        '749': 'IOT',
+        '750': 'DS',
+        '736': 'MECH',
+        '733': 'CSE',
+        '732': 'CIVIL',
+        '737': 'IT',
+        '735': 'ECE',
+        '734': 'EEE',
+}
+
+COLLEGE_CHOICES = {
+    '1604': 'MJCET',
+    '1603': 'DECCAN',
+    '1605': 'ISL',
+    '1610': 'NSAKCET',
+    '2455': 'KMEC',
+    '2453': 'NGIT'
+}
+
 def scrape_results(result_link, college_code, field_code, year):
     globalbr = mechanize.Browser()
     globalbr.set_handle_robots(False)
@@ -108,13 +129,18 @@ def is_valid_combination(college_code, field_code):
 
 def index(request):
     results = []
+    college_name=None
+    field_name=None
+    field_code=None
 
     if request.method == 'POST':
         form = ResultForm(request.POST)
         if form.is_valid():
             result_link = form.cleaned_data['result_link']
             college_code = form.cleaned_data['college_code']
+            college_name = COLLEGE_CHOICES.get(college_code)
             field_code = form.cleaned_data['field_code']
+            field_name=FIELD_CHOICES.get(field_code)
             year = form.cleaned_data['year']
 
             # Scraping results
@@ -123,4 +149,4 @@ def index(request):
     else:
         form = ResultForm()
 
-    return render(request, 'resultapp/index.html', {'form': form, 'results': results})
+    return render(request, 'resultapp/index.html', {'form': form, 'results': results,'college_name':college_name,'field_name':field_name})
