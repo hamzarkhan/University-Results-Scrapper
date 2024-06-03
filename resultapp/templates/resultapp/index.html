@@ -150,6 +150,20 @@
             font-size: 25px;
             text-align: center;
         }
+        button.download-btn {
+    background-color: #4285f4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button.download-btn:hover {
+    background-color: #357ae8;
+}
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -190,7 +204,7 @@
                 <th>Backlogs</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="resultsTable">
             {% for result in results %}
                 {% if result.hall_ticket and result.marks and result.name and result.backlogs %}
                     <tr>
@@ -203,6 +217,7 @@
             {% endfor %}
         </tbody>
     </table>
+    <button class="download-btn" onclick="downloadXLSX('results.xlsx')">Download as Excel Sheet</button>
 {% endif %}
 
    
@@ -217,6 +232,34 @@
             document.getElementById("mySidebar").style.width = "0";
         }
     </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+  <script>
+    function downloadXLSX(filename) {
+        let table = document.getElementById("resultsTable");
+        if (!table) {
+            console.error("Table not found!");
+            return;
+        }
+        let sheetName = document.getElementById("heading").innerText.trim();
+        const wb = XLSX.utils.table_to_book(table, { sheet: sheetName });
+
+        // Get the first sheet and set cell styles
+        const ws = wb.Sheets[sheetName];
+        const range = XLSX.utils.decode_range(ws['!ref']);
+
+        for (let C = range.s.c; C <= range.e.c; ++C) {
+            for (let R = range.s.r; R <= range.e.r; ++R) {
+                const cell_address = {c: C, r: R};
+                const cell_ref = XLSX.utils.encode_cell(cell_address);
+                if (!ws[cell_ref]) continue;
+                if (!ws[cell_ref].s) ws[cell_ref].s = {};
+                ws[cell_ref].s.alignment = { wrapText: true };
+            }
+        }
+
+        XLSX.writeFile(wb, filename);
+    }
+</script>
     <footer>
         made by <a href="https://github.com/that-ar-guy">AR</a>
     </footer>
