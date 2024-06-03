@@ -178,30 +178,34 @@
 
     <!-- Display results if available -->
     {% if results %}
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="4" id="heading">{{ college_name }} {{field_name}} RESULTS </th> <!-- Display the college name here -->
-                </tr>
-                <tr>
-                    <th>Hall Ticket</th>
-                    <th>Marks</th>
-                    <th>Name</th>
-                    <th>Backlogs</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for result in results %}
+    <table>
+        <thead>
+            <tr>
+                <th colspan="4" id="heading">{{ college_name }} {{field_name}} RESULTS </th>
+            </tr>
+            <tr>
+                <th>Hall Ticket</th>
+                <th>Marks</th>
+                <th>Name</th>
+                <th>Backlogs</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+                {% if result.hall_ticket and result.marks and result.name and result.backlogs %}
                     <tr>
                         <td>{{ result.hall_ticket }}</td>
                         <td>{{ result.marks }}</td>
                         <td>{{ result.name }}</td>
                         <td>{{ result.backlogs }}</td>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+   
 
     <!-- JavaScript to control sidebar -->
     <script>
