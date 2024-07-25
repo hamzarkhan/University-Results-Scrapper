@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,16 +14,20 @@
             padding: 0;
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
 
         .navbar {
+            width: 100%;
             background-color: #4285f4;
             color: white;
             padding: 20px;
             text-align: center;
             display: flex;
-            justify-content: center; /* Center the content horizontally */
-            align-items: center; /* Center the content vertically */
+            justify-content: center;
+            /* Center the content horizontally */
+            align-items: center;
+            /* Center the content vertically */
         }
 
         .navbar h1 {
@@ -52,7 +57,8 @@
             font-size: 20px;
             color: #818181;
             display: block;
-            transition: 0.3s; /* Add some space between links */
+            transition: 0.3s;
+            /* Add some space between links */
         }
 
         .sidebar a:hover {
@@ -71,38 +77,55 @@
             margin-left: 20px;
             margin-bottom: 20px;
         }
+        .form-cont{
+            width: 100%;
+            border: 1px solid black;
+        }
 
         form {
-            margin: 0 auto; /* Center the form horizontally */
-            width: 50%; /* Adjust width as needed */
-            max-width: 600px; /* Set maximum width for larger screens */
-            padding: 20px; /* Add some padding for better visual appeal */
-            background-color: #fff; /* Add a white background */
-            border-radius: 8px; /* Add rounded corners */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            margin: 0 auto;
+            /* Center the form horizontally */
+            width: 50%;
+            /* Adjust width as needed */
+            max-width: 600px;
+            /* Set maximum width for larger screens */
+            padding: 20px;
+            /* Add some padding for better visual appeal */
+            background-color: #fff;
+            /* Add a white background */
+            border-radius: 8px;
+            /* Add rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* Add a subtle box shadow */
         }
 
         table {
             width: 80%;
             border-collapse: collapse;
-            margin: 20px auto;  /* Center the table and add some margin */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  /* Add a subtle box shadow */
+            margin: 20px auto;
+            /* Center the table and add some margin */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* Add a subtle box shadow */
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
             text-align: left;
-            border: 1px solid #ddd;  /* Add border to cells */
+            border: 1px solid #ddd;
+            /* Add border to cells */
         }
 
         th {
             background-color: #4285f4;
             color: white;
-            border: 1px solid #4285f4;  /* Match border color with header background */
+            border: 1px solid #4285f4;
+            /* Match border color with header background */
         }
 
         tr:nth-child(even) {
-            background-color: #f9f9f9;  /* Alternate background color for even rows */
+            background-color: #f9f9f9;
+            /* Alternate background color for even rows */
         }
 
         tr:hover {
@@ -125,10 +148,14 @@
         form select,
         form textarea,
         form button {
-            width: 100%; /* Make elements fill the width of the form */
-            margin-bottom: 10px; /* Add space between elements */
-            padding: 8px; /* Add padding for better visual appeal */
-            box-sizing: border-box; /* Ensure padding and border don't affect element width */
+            width: 100%;
+            /* Make elements fill the width of the form */
+            margin-bottom: 10px;
+            /* Add space between elements */
+            padding: 8px;
+            /* Add padding for better visual appeal */
+            box-sizing: border-box;
+            /* Ensure padding and border don't affect element width */
         }
 
         .navbar .sidebar-icon {
@@ -137,57 +164,73 @@
             color: white;
             margin-right: 10px;
         }
-        footer{
-    
-    
+
+        footer {
             text-align: center;
         }
-        footer a{
+
+        footer a {
             color: inherit;
             text-decoration: none;
         }
-        #heading{
+
+        #heading {
             font-size: 25px;
             text-align: center;
         }
+
         button.download-btn {
-    background-color: #4285f4;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
+            background-color: #4285f4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
 
-button.download-btn:hover {
-    background-color: #357ae8;
-}
+        button.download-btn:hover {
+            background-color: #357ae8;
+        }
 
-@media (max-width:500px){
-    form{
-        padding: 25px;
-        width: 100%;
-    }
-    .navbar{
-        width: 100%;
-    }
-    table{
-        font-size: 10px;
-    width: 100%;
-    }
-}
+        @media (max-width:427px) {
+            input::placeholder {
+                font-size: 12px;
+            }
+
+            .navbar h1 {
+                font-size: 15px;
+            }
+
+            form {
+                padding: 27px 42px;
+                width: 60%;
+            }
+
+            p {
+                font-weight: 100;
+                font-size: 12px;
+            }
+
+            table {
+                font-size: 10px;
+                width: 100%;
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
     <!-- Collapsible sidebar -->
     <div class="sidebar" id="mySidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <p>Created By: <br> Mohammed Abdul Rahman</p>
-        <p>Connect with me: <a href="https://www.linkedin.com/in/mohammed-abdul-rahman-710a74250/" style="font-size: small;" target="_blank">LinkedIn</a>
-        <a href="https://www.github.com/in/that-ar-guy" style="font-size: small;" target="_blank"> Github</a></p>
+        <p>Connect with me: <a href="https://www.linkedin.com/in/mohammed-abdul-rahman-710a74250/"
+                style="font-size: small;" target="_blank">LinkedIn</a>
+            <a href="https://www.github.com/in/that-ar-guy" style="font-size: small;" target="_blank"> Github</a>
+        </p>
         <p>Project: <br> University Results Scrapper</p>
     </div>
 
@@ -198,11 +241,13 @@ button.download-btn:hover {
     </div>
 
     <!-- Form for submitting results -->
-    <form id="resultForm" method="post" action="{% url 'index' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+    <div class="form-cont">
+        <form id="resultForm" method="post" action="{% url 'index' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
     <!-- Display results if available -->
     {% if results %}
@@ -220,21 +265,21 @@ button.download-btn:hover {
         </thead>
         <tbody id="resultsTable">
             {% for result in results %}
-                {% if result.hall_ticket and result.marks and result.name and result.backlogs %}
-                    <tr>
-                        <td>{{ result.hall_ticket }}</td>
-                        <td>{{ result.marks }}</td>
-                        <td>{{ result.name }}</td>
-                        <td>{{ result.backlogs }}</td>
-                    </tr>
-                {% endif %}
+            {% if result.hall_ticket and result.marks and result.name and result.backlogs %}
+            <tr>
+                <td>{{ result.hall_ticket }}</td>
+                <td>{{ result.marks }}</td>
+                <td>{{ result.name }}</td>
+                <td>{{ result.backlogs }}</td>
+            </tr>
+            {% endif %}
             {% endfor %}
         </tbody>
     </table>
     <button class="download-btn" onclick="downloadXLSX('results.xlsx')">Download as Excel Sheet</button>
-{% endif %}
+    {% endif %}
 
-   
+
 
     <!-- JavaScript to control sidebar -->
     <script>
@@ -246,34 +291,34 @@ button.download-btn:hover {
             document.getElementById("mySidebar").style.width = "0";
         }
     </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
-  <script>
-    function downloadXLSX(filename) {
-        let table = document.getElementById("resultsTable");
-        if (!table) {
-            console.error("Table not found!");
-            return;
-        }
-        let sheetName = document.getElementById("heading").innerText.trim();
-        const wb = XLSX.utils.table_to_book(table, { sheet: sheetName });
-
-        // Get the first sheet and set cell styles
-        const ws = wb.Sheets[sheetName];
-        const range = XLSX.utils.decode_range(ws['!ref']);
-
-        for (let C = range.s.c; C <= range.e.c; ++C) {
-            for (let R = range.s.r; R <= range.e.r; ++R) {
-                const cell_address = {c: C, r: R};
-                const cell_ref = XLSX.utils.encode_cell(cell_address);
-                if (!ws[cell_ref]) continue;
-                if (!ws[cell_ref].s) ws[cell_ref].s = {};
-                ws[cell_ref].s.alignment = { wrapText: true };
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
+    <script>
+        function downloadXLSX(filename) {
+            let table = document.getElementById("resultsTable");
+            if (!table) {
+                console.error("Table not found!");
+                return;
             }
-        }
+            let sheetName = document.getElementById("heading").innerText.trim();
+            const wb = XLSX.utils.table_to_book(table, { sheet: sheetName });
 
-        XLSX.writeFile(wb, filename);
-    }
-</script>
+            // Get the first sheet and set cell styles
+            const ws = wb.Sheets[sheetName];
+            const range = XLSX.utils.decode_range(ws['!ref']);
+
+            for (let C = range.s.c; C <= range.e.c; ++C) {
+                for (let R = range.s.r; R <= range.e.r; ++R) {
+                    const cell_address = { c: C, r: R };
+                    const cell_ref = XLSX.utils.encode_cell(cell_address);
+                    if (!ws[cell_ref]) continue;
+                    if (!ws[cell_ref].s) ws[cell_ref].s = {};
+                    ws[cell_ref].s.alignment = { wrapText: true };
+                }
+            }
+
+            XLSX.writeFile(wb, filename);
+        }
+    </script>
     <footer>
         made by <a href="https://github.com/that-ar-guy">AR</a>
     </footer>
