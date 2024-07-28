@@ -276,7 +276,7 @@
             {% endfor %}
         </tbody>
     </table>
-    <button class="download-btn" onclick="downloadXLSX('results.xlsx')">Download as Excel Sheet</button>
+    <button class="download-btn" onclick="downloadXLSX('{{ college_name }} {{field_name}} RESULTS.xlsx')">Download as Excel Sheet</button>
     {% endif %}
 
 
@@ -291,6 +291,7 @@
             document.getElementById("mySidebar").style.width = "0";
         }
     </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
     <script>
         function downloadXLSX(filename) {
